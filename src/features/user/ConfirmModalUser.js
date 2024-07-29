@@ -32,7 +32,12 @@ export default function ConfirmModalUser({ open, handleClose, selectedUser }) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button color="warning" onClick={handleConfirm} autoFocus>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleConfirm}
+          autoFocus
+        >
           Delete
         </Button>
       </DialogActions>

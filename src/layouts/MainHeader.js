@@ -57,14 +57,6 @@ function MainHeader() {
       </Box>
 
       <Divider sx={{ borderStyle: "dash" }} />
-      <MenuItem
-        onClick={handleProfileMenuClose}
-        to="/"
-        component={RouterLink}
-        sx={{ mx: 1 }}
-      >
-        My profile
-      </MenuItem>
 
       <Divider sx={{ borderStyle: "dash" }} />
       <MenuItem onClick={handleLogout} sx={{ mx: 1 }}>

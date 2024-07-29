@@ -16,6 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { Link } from "react-router-dom";
 
 import MainHeader from "./MainHeader";
 import Logo from "../components/Logo";
@@ -95,7 +96,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function SideMenu() {
+export default function SideMenu({ role }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -107,6 +108,35 @@ export default function SideMenu() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  //Map MenuList logic
+  const getMenuItems = () => {
+    switch (role) {
+      case "Admin":
+        return [
+          { text: "Dashboard", link: "/", icon: <DashboardIcon /> },
+          { text: "Users", link: "/user", icon: <ManageAccountsIcon /> },
+        ];
+      case "Manager":
+        return [
+          { text: "Dashboard", link: "/", icon: <DashboardIcon /> },
+          { text: "Contract", link: "/contract", icon: <HistoryEduIcon /> },
+          { text: "Customer", link: "/customer", icon: <GroupsIcon /> },
+          { text: "Interest", link: "/interest", icon: <CalculateIcon /> },
+        ];
+      case "Employee":
+        return [
+          { text: "Dashboard", link: "/", icon: <DashboardIcon /> },
+          { text: "Contract", link: "/contract", icon: <HistoryEduIcon /> },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const menuItems = getMenuItems();
+
+  //------------------
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -145,6 +175,41 @@ export default function SideMenu() {
         </DrawerHeader>
         <Divider />
         <List>
+          {menuItems.map((item, index) => (
+            <>
+              <ListItem
+                disablePadding
+                sx={{ display: "block" }}
+                onClick={() => {
+                  navigate(item.link);
+                }}
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </>
+          ))}
+
+          {/*
           <ListItem
             disablePadding
             sx={{ display: "block" }}
@@ -282,6 +347,7 @@ export default function SideMenu() {
               <ListItemText primary="User" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
+              */}
         </List>
         <Divider />
       </Drawer>

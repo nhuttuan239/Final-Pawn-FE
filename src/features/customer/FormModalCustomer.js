@@ -164,7 +164,12 @@ export default function FormModalCustomer({
           <Button color="warning" onClick={handleClose}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={handleSubmit}
+          >
             {mode === "create" ? "Create" : "Save"}
           </Button>
         </DialogActions>

@@ -42,7 +42,12 @@ export default function ConfirmModalBill({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button color="warning" onClick={handleConfirm} autoFocus>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleConfirm}
+          autoFocus
+        >
           Delete
         </Button>
       </DialogActions>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -340,8 +341,7 @@ const FormModalContract = ({
               />
             </Grid>
           </Grid>
-
-          <Stack spacing={2} direction="row">
+          <DialogActions>
             <Button color="warning" onClick={handleClose}>
               Cancel
             </Button>
@@ -353,7 +353,7 @@ const FormModalContract = ({
             >
               {mode === "create" ? "Create" : "Save"}
             </Button>
-          </Stack>
+          </DialogActions>
         </form>
       </Box>
     </Modal>

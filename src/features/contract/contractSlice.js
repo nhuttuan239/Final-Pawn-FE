@@ -116,7 +116,6 @@ export const getContractListAsync =
       dispatch(slice.actions.getContractListSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
-      toast.error(error.message);
     }
   };
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Container, Stack, Typography } from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -248,14 +249,24 @@ function PaymentPage() {
               </Grid>
             </Grid>
           </CardContent>
-          <CardActions>
-            <Button size="medium" color="primary" onClick={handleInterestPay}>
+          <DialogActions>
+            <Button
+              size="medium"
+              variant="contained"
+              color="primary"
+              onClick={handleInterestPay}
+            >
               Interest Pay
             </Button>
-            <Button size="medium" color="error" onClick={handleTotalPay}>
+            <Button
+              size="medium"
+              variant="contained"
+              color="error"
+              onClick={handleTotalPay}
+            >
               Total Pay
             </Button>
-          </CardActions>
+          </DialogActions>
         </Card>
         <BillsTable
           billsTableData={billsTableData}

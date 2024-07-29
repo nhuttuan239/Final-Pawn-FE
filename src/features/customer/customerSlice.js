@@ -90,7 +90,6 @@ export const getCustomerListAsync =
       dispatch(slice.actions.getCustomerListSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
-      toast.error(error.message);
     }
   };
 

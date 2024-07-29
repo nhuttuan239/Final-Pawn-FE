@@ -1,5 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import React from "react";
+import useAuth from "../hooks/useAuth";
 
 import MainFooter from "./MainFooter";
 import { Outlet } from "react-router-dom";
@@ -7,9 +8,10 @@ import AlertMsg from "../components/AlertMsg";
 import SideMenu from "./SideMenu";
 
 function MainLayout() {
+  const { user, isInitialized } = useAuth();
   return (
     <Stack sx={{ minHeight: "100vh" }}>
-      <SideMenu />
+      <SideMenu role={user.role} />
       <AlertMsg />
       <Outlet />
       {/* To push the footer to the bottom in case the outlet content is too short */}
