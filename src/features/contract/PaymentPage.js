@@ -117,7 +117,7 @@ function PaymentPage() {
               component="div"
               color="primary"
             >
-              Payment for {selectedPayment.cnumber} - {selectedPayment.customer}
+              Payment for {selectedPayment.cnumber} {selectedPayment.customer}
             </Typography>
             <Divider sx={{ mb: 2 }} />
 
