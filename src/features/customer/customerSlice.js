@@ -81,7 +81,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 export const getCustomerListAsync =
-  ({ page = 1, limit = 12, search_params }) =>
+  ({ page = 1, limit = 20, search_params }) =>
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -90,7 +90,6 @@ export const getCustomerListAsync =
       dispatch(slice.actions.getCustomerListSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
-      toast.error(error.message);
     }
   };
 
@@ -99,9 +98,12 @@ export const createCustomer = (form) => async (dispatch) => {
   try {
     const response = await apiService.post("/customers", form);
 
-    dispatch(slice.actions.createCustomerSuccess(response.data));
-
-    toast.success(response.message);
+    if (response.errors) {
+      toast.success(response.errors);
+    } else {
+      toast.success(response.message);
+      dispatch(slice.actions.createCustomerSuccess(response.data));
+    }
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);

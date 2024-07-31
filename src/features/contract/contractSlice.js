@@ -107,7 +107,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 export const getContractListAsync =
-  ({ name, page = 1, limit = 12 }) =>
+  ({ name, page = 1, limit = 20 }) =>
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {

@@ -86,7 +86,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 export const getInterestListAsync =
-  ({ name, page = 1, limit = 12 }) =>
+  ({ name, page = 1, limit = 20 }) =>
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -104,8 +104,12 @@ export const createInterest = (form) => async (dispatch) => {
   try {
     const response = await apiService.post("/interests", form);
 
-    dispatch(slice.actions.createInterestSuccess(response.data));
-    toast.success(response.message);
+    if (response.errors) {
+      toast.success(response.errors);
+    } else {
+      toast.success(response.message);
+      dispatch(slice.actions.createInterestSuccess(response.data));
+    }
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);
