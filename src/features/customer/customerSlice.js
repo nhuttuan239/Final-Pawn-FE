@@ -90,6 +90,7 @@ export const getCustomerListAsync =
       dispatch(slice.actions.getCustomerListSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
+      toast.error(error.message);
     }
   };
 
@@ -99,8 +100,8 @@ export const createCustomer = (form) => async (dispatch) => {
     const response = await apiService.post("/customers", form);
 
     dispatch(slice.actions.createCustomerSuccess(response.data));
-    toast.success("Create Customer successfully");
-    // dispatch(getCurrentUserProfile());
+
+    toast.success(response.message);
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);

@@ -103,11 +103,9 @@ export const createInterest = (form) => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.post("/interests", form);
-    toast.success("Create Interest successfully");
-    dispatch(slice.actions.createInterestSuccess(response.data));
 
-    dispatch(getInterestListAsync({}));
-    // dispatch(getCurrentUserProfile());
+    dispatch(slice.actions.createInterestSuccess(response.data));
+    toast.success(response.message);
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);

@@ -51,10 +51,9 @@ function InterestPage() {
       getInterestListAsync({
         page: page + 1,
         limit: rowsPerPage,
-        name: filterName,
       })
     );
-  }, [filterName, rowsPerPage, page, dispatch]);
+  }, [rowsPerPage, page, dispatch]);
 
   return (
     <Container>
