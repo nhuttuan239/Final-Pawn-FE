@@ -81,11 +81,11 @@ const slice = createSlice({
 export default slice.reducer;
 
 export const getCustomerListAsync =
-  ({ search_params }) =>
+  ({ page = 1, limit = 20, search_params }) =>
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const params = { search_params };
+      const params = { search_params, page, limit };
       const response = await apiService.get(`/customers`, { params });
       dispatch(slice.actions.getCustomerListSuccess(response.data));
     } catch (error) {
